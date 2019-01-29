@@ -29,3 +29,6 @@ alias installedpackages="cat /var/log/dpkg.log | awk '{print \$3,\$4}' | grep '^
 
 # Lazy update
 alias update="sudo apt update && sudo apt upgrade -y"
+
+# last 60 min log 
+awk -v d1="$(date --date="-60 min" "+%b %_d %H:%M")" -v d2="$(date "+%b %_d %H:%M")" '$0 > d1 && $0 < d2 || $0 ~ d2' /var/log/mess
